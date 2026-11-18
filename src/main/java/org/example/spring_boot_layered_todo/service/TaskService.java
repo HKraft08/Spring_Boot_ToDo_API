@@ -8,6 +8,8 @@ import org.example.spring_boot_layered_todo.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class TaskService {
 
@@ -59,6 +61,21 @@ public class TaskService {
         Tasks task = findByIdOrThrow(id);
 
         taskRepository.delete(task);
+    }
+
+    //Read by task name
+    @Transactional(readOnly = true)
+    public List<TaskResponse> getTaskByName(String taskName) {
+
+        List<Tasks> task = taskRepository.findByTaskName(taskName);
+
+        if (task.isEmpty()) {
+            throw new ResourceNotFoundException("Task not found with name: " + taskName);
+        }
+
+        return task.stream()
+                .map(this::mapToResponse)
+                .toList();
     }
 
     private TaskResponse mapToResponse(Tasks task) {
