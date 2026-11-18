@@ -2,6 +2,7 @@ package org.example.spring_boot_layered_todo.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public record TaskRequest(
         @Size(max = 255, message = "Task description must not exceed 255 characters")
         String description,
 
-        @NotBlank(message = "Due date is required")
+        @NotNull(message = "Due date is required")
         @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate dueDate
 ) {
