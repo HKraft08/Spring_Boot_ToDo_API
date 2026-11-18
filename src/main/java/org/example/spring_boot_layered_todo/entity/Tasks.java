@@ -32,5 +32,5 @@ public class Tasks {
     private LocalDate dueDate;
 
     @Column(nullable = false)
-    private boolean isCompleted = false;
+    private boolean isCompleted;
 }

@@ -18,7 +18,9 @@ public record TaskRequest(
 
         @NotNull(message = "Due date is required")
         @JsonFormat(pattern = "dd/MM/yyyy")
-        LocalDate dueDate
+        LocalDate dueDate,
+
+        Boolean isCompleted
 ) {
 
 }
