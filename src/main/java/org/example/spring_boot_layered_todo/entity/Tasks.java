@@ -26,5 +26,11 @@ public class Tasks {
     private String taskName;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private String description;
+
+    @Column(nullable = false)
+    private LocalDate dueDate;
+
+    @Column(nullable = false)
+    private boolean completed;
 }
