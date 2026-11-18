@@ -6,10 +6,7 @@ import org.example.spring_boot_layered_todo.DTO.TaskResponse;
 import org.example.spring_boot_layered_todo.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/tasks")
@@ -30,5 +27,12 @@ public class TaskController {
                 .status(HttpStatus.CREATED)
                 .body(response);
 
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskResponse> updateTask(
+            @PathVariable Long id, @Valid @RequestBody TaskRequest request) {
+
+        return ResponseEntity.ok(taskService.updateTask(id, request));
     }
 }
