@@ -52,6 +52,15 @@ public class TaskService {
         return mapToResponse(updatedTask);
     }
 
+    //Delete task
+    @Transactional
+    public void deleteTask(Long id) {
+
+        Tasks task = findByIdOrThrow(id);
+
+        taskRepository.delete(task);
+    }
+
     private TaskResponse mapToResponse(Tasks task) {
 
         return new TaskResponse(

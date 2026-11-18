@@ -18,6 +18,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    //Create task
     @PostMapping
     public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody TaskRequest request) {
 
@@ -29,6 +30,7 @@ public class TaskController {
 
     }
 
+    //Update task
     @PutMapping("/{id}")
     public ResponseEntity<TaskResponse> updateTaskDetails(
             @PathVariable Long id, @Valid @RequestBody TaskRequest request) {
@@ -36,4 +38,12 @@ public class TaskController {
         return ResponseEntity.ok(taskService.updateTaskDetails(id, request));
     }
 
+    //Delete task
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+
+        taskService.deleteTask(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
